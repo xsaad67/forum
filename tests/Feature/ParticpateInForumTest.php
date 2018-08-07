@@ -22,6 +22,6 @@ class ParticpateInForumTest extends TestCase
 
     	$this->post('/thread/'.$thread->id.'/reply',$reply->toArray());
 
-    	$this->get('/thread/'.$thread->id)->assertSee($reply->body)
+    	$this->get('/thread/'.$thread->id)->assertSee($reply->body);
     }
 }
