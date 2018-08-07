@@ -1,0 +1,13 @@
+#forum 
+
+To run tests in windows machine use
+vendor\bin\phpunit
+#for directory
+vendor\bin\phpunit ./tests/unit/TestName.php
+
+1. Thread
+2. Reply
+3. Users
+
+A. Thread is created by user
+B. Reply is created by user
