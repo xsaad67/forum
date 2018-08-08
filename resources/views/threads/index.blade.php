@@ -9,7 +9,7 @@
         	@foreach($threads as $thread)
             
             <div class="card" style="margin-bottom:25px;">
-                <div class="card-header"><a href="thread/{{$thread->id}}">
+                <div class="card-header"><a href="{{$thread->path()}}">
                     {{$thread->title}}
                     </a>
                 </div>

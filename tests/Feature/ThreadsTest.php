@@ -43,4 +43,10 @@ class ThreadsTest extends TestCase
         $response = $this->get('/thread/'.$this->thread->id)
                     ->assertSee($reply->body);
     }
+
+    /** @test **/
+    public function a_thread_can_make_a_string_path(){
+        $thread = create('App\Thread');
+        $this->assertEquals('/thread/'.$thread->channel->slug.'/'.$thread->id, $thread->path());
+    }
 }

@@ -23,4 +23,9 @@ class ThreadTest extends TestCase
     	$thread = factory('App\Thread')->create();
     	$this->assertInstanceOf('App\User',$thread->creater);
     }
+
+    public function thread_belongs_to_channel(){
+        $thread = create('App\Thread');
+        $this->assertInstanceOf('App\Channel',$thread->channel);
+    }
 }

@@ -14,4 +14,13 @@ class Thread extends Model
     public function creater(){
     	return $this->belongsTo(User::class,'user_id');
     }
+
+    public function channel(){
+    	return $this->belongsTo(Channel::class);
+    }
+
+
+    public function path(){
+    	return '/thread/'.$this->channel->slug.'/'.$this->id;
+    }
 }
