@@ -49,4 +49,28 @@ class ThreadsTest extends TestCase
         $thread = create('App\Thread');
         $this->assertEquals('/thread/'.$thread->channel->slug.'/'.$thread->id, $thread->path());
     }
+
+    /** @test **/
+    public function a_thread_can_filter_threads_according_to_tag(){
+        $channel = create('App\Channel');
+        $threadInChannel = create('App\Thread',['channel_id'=>$channel->id]);
+        $threadNotInChannel = create('App\Thread');
+
+        $this->get('/threads/'.$channel->slug)
+            ->assertSee($threadInChannel->title)
+            ->assertDontSee($threadNotInChannel->title);
+    }
+
+
+    public function a_user_can_filter_threads(){
+        $this->signIn(create('App\User',['name'=>'JohnDoe']));
+        $threadByJohn = create('App\Thread',['user_id'=>auth()->id()]);
+        $threadNotByJohn = create('App\Thread');
+
+        $this->get('/threads?by=JohnDoe')
+            ->assertSee($threadByJohn->title)
+            ->assertDontSee($threadNotByJohn->title);
+    }
+
+        
 }
