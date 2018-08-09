@@ -27,3 +27,7 @@ Route::get('/thread/create','ThreadController@create');
 Route::get('/thread/{channel}/{thread}','ThreadController@show');
 Route::post('thread/{channel}/{thread}/reply','ReplyController@store');
 Route::post('/threads','ThreadController@store');
+
+Route::get('/users',function(){
+	return App\User::all();
+});

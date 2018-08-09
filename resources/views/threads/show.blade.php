@@ -44,7 +44,7 @@
              @guest
                 <p class="strong text-center">Please <a href="/login">login</a> to reply</p>
              @else
-            <form method="POST" action="/thread/{{$thread->id}}/reply">
+            <form method="POST" action="{{ url($thread->path().'/reply') }}">
                 @csrf
                 <textarea class="form-control" name="body" rows="5" placeholder="Have some thoughts?"></textarea>
                 <button class="btn btn-primary mt-25" type="submit">Submit a reply</button>

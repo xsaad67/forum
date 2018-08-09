@@ -34,7 +34,7 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Thread $thread, Request $request)
+    public function store($channelId, Thread $thread, Request $request)
     {
         $reply = new Reply();
         $reply->user_id = auth()->id();

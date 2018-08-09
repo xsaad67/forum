@@ -27,7 +27,7 @@ class ThreadsTest extends TestCase
 
     public function a_user_browse_single_thread(){
 
-        $response = $this->get('/thread/'.$this->thread->id);
+        $response = $this->get($this->thread->path());
 
         $response->assertSee($this->thread->title);
 
@@ -40,7 +40,7 @@ class ThreadsTest extends TestCase
         //Thread have replies
         $reply = factory('App\Reply')->create(['thread_id'=>$this->thread->id]); 
         //When we visit thread page
-        $response = $this->get('/thread/'.$this->thread->id)
+        $response = $this->get($this->thread->path())
                     ->assertSee($reply->body);
     }
 
