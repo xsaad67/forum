@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
     
+    protected static function boot(){
+        parent::boot();
+
+        static::addGlobalScope('replyCount',function($builder){
+            $builder->withCount('replies');
+        });
+    }
     public function replies(){
     	return $this->hasMany(Reply::class);
     }
@@ -23,4 +30,13 @@ class Thread extends Model
     public function path(){
     	return '/thread/'.$this->channel->slug.'/'.$this->id;
     }
+
+    public function scopeFilter($query,$filters){
+        $filters->apply($query);
+    }
+
+    // public function getReplyCountAttribute(){
+    //     return $this->reply()->count();
+    // }
+    
 }

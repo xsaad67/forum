@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
         	 
             <div class="card" style="margin-bottom:25px;">
@@ -17,29 +17,27 @@
                 </div>
             </div>
 
-        </div>
-    </div>
 
-     <div class="row justify-content-center">
-        <div class="col-md-8">
-             
-            @foreach($thread->replies as $reply)
-            <div class="card" style="margin-bottom:25px;">
-                <div class="card-header">
-                   {{$reply->owner->name}} said {{$reply->created_at->diffForHumans()}}
-                </div>
+          
 
-                <div class="card-body">
-                    {{$reply->body}}
+            @foreach($replies as $reply)
+                <div class="card" style="margin-bottom:25px;">
+                    <div class="card-header">
+                       {{$reply->owner->name}} said {{$reply->created_at->diffForHumans()}}
+                    </div>
+
+                    <div class="card-body">
+                        {{$reply->body}}
+                    </div>
+
+
                 </div>
-            </div>
+                {{$replies->links()}}
             @endforeach
 
-        </div>
-    </div>
-
-     <div class="row justify-content-center">
-        <div class="col-md-8">
+          
+            
+      
              
              @guest
                 <p class="strong text-center">Please <a href="/login">login</a> to reply</p>
@@ -51,8 +49,25 @@
             </form>
             @endguest
 
+
+        </div>
+
+        <div class="col-md-4">
+            
+            <div class="card" style="margin-bottom:25px;">
+                <div class="card-header">
+                    Meta Information
+                </div>
+
+                <div class="card-body">
+                    This thread was published at {{ $thread->created_at->diffForHumans()}} by <a href="/threads?by={{$thread->creater->name}}">{{$thread->creater->name}}</a>.
+                    and currently has {{$thread->replies_count}} {{str_plural('reply', $thread->replies_count)}}
+                </div>
+            </div>
+
         </div>
     </div>
+
 
 </div>
 
