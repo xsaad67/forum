@@ -11,6 +11,7 @@
             <div class="card" style="margin-bottom:25px;">
                 <div class="card-header"><a href="{{$thread->path()}}">
                     {{$thread->title}}
+                    {{$thread->replies_count}}
                     </a>
                 </div>
 

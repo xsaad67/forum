@@ -17,9 +17,6 @@
                 </div>
             </div>
 
-
-          
-
             @foreach($replies as $reply)
                 <div class="card" style="margin-bottom:25px;">
                     <div class="card-header">
