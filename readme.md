@@ -1,1 +1,1 @@
-Updated till 22nd lecture
+Updated till 24th lecture
