@@ -20,7 +20,18 @@
             @foreach($replies as $reply)
                 <div class="card" style="margin-bottom:25px;">
                     <div class="card-header">
-                       {{$reply->owner->name}} said {{$reply->created_at->diffForHumans()}}
+                        <div class="d-flex justify-content-between">
+                            <div> 
+                               {{$reply->owner->name}} said {{$reply->created_at->diffForHumans()}}
+                            </div>
+
+                            <div>
+                                <form method="POST" action="/replies/{{$reply->id}}/favorites">
+                                    @csrf
+                                    <button class="btn btn-primary" {{$reply->isFavorited() ? 'disabled' : ''}}>{{$reply->favoritesCount}} Favorite</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-body">

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
+
+    protected $with = ['creater','channel'];
     
     protected static function boot(){
         parent::boot();
@@ -14,8 +16,11 @@ class Thread extends Model
             $builder->withCount('replies');
         });
     }
+    
     public function replies(){
     	return $this->hasMany(Reply::class);
+                    // ->withCount('favorites')
+                    // ->with('owner');
     }
 
     public function creater(){
