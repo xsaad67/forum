@@ -9,11 +9,26 @@
         	@foreach($threads as $thread)
             
             <div class="card" style="margin-bottom:25px;">
-                <div class="card-header"><a href="{{$thread->path()}}">
-                    {{$thread->title}}
-                    {{$thread->replies_count}}
-                    </a>
-                </div>
+                <div class="card-header">
+
+                    <div class="d-flex justify-content-between">    
+
+                            <div><a href="{{$thread->path()}}">
+                                {{$thread->title}} {{$thread->replies_count}}
+                            </a></div>
+
+                            @can('update',$thread)
+                            <div>
+                                <form method="POST" action="{{$thread->path()}}">
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                        <button class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                            @endcan
+
+                        </div>
+                    </div>
 
                 <div class="card-body">
                     {{$thread->body}}
