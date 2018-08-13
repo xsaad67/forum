@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
 
+    use RecordsActivity;
+
     protected $with = ['creater','channel'];
     
     protected static function boot(){
@@ -19,8 +21,10 @@ class Thread extends Model
         static::deleting(function($thread){
             $thread->replies()->delete();
         });
+
     }
     
+   
     public function replies(){
     	return $this->hasMany(Reply::class);
                     // ->withCount('favorites')
